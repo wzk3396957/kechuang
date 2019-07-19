@@ -36,8 +36,9 @@ class Video extends Base
             exit(ajaxReturn([],0,'视频获取失败'));
         }
         $video["video"] = config("app.url") . $video["video"];
-        //是否能看视频
         $user_id = $this ->user["id"];
+        $this ->renderRecord($user_id,$video);
+        //是否能看视频
         $role_id = Db::name("user") ->where(["id"=>$user_id])
             ->value("role_id");
         $video["is_video"] = Db::name("user_role")
@@ -159,6 +160,27 @@ class Video extends Base
             Db::name("video")->where(["id" => $video_id])
                 ->setInc("favorite_count");
             exit(ajaxReturn([], 1, '收藏成功'));
+        }
+    }
+
+    //渲染 点赞/收藏
+    private function renderRecord($user_id,&$v){
+        //是否点赞
+        $like_record = Db::name("video_like")
+            ->where(["user_id"=>$user_id,"video_id"=>$v["id"]])
+            ->find();
+        if(empty($like_record)){
+            $v["is_like"] = 0;
+        }else{
+            $v["is_like"] = 1;
+        }
+        $favorites_record = Db::name("my_favorites")
+            ->where(["user_id"=>$user_id,"favorites_id"=>$v["id"],"favorites_type"=>1,"is_del"=>0])
+            ->find();
+        if(empty($favorites_record)){
+            $v["is_favorites"] = 0;
+        }else{
+            $v["is_favorites"] = 1;
         }
     }
 }

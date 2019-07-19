@@ -18,12 +18,34 @@ class Article extends Base
             ->field("id,img,title,type,like_count,favorite_count,comment_count,send_count")
             ->paginate(config("app.page_num"))
             ->toArray();
+        $user_id = $this ->user["id"];
         foreach ($list["data"] as &$v){
             $v["img"] = config("app.url") . $v["img"];
+            $this ->renderRecord($user_id,$v);
         }
         exit(ajaxReturn($list,1,'获取成功'));
     }
 
+    //渲染 点赞/收藏
+    private function renderRecord($user_id,&$v){
+        //是否点赞
+        $like_record = Db::name("article_like")
+            ->where(["user_id"=>$user_id,"article_id"=>$v["id"]])
+            ->find();
+        if(empty($like_record)){
+            $v["is_like"] = 0;
+        }else{
+            $v["is_like"] = 1;
+        }
+        $favorites_record = Db::name("my_favorites")
+            ->where(["user_id"=>$user_id,"favorites_id"=>$v["id"],"favorites_type"=>2,"is_del"=>0])
+            ->find();
+        if(empty($favorites_record)){
+            $v["is_favorites"] = 0;
+        }else{
+            $v["is_favorites"] = 1;
+        }
+    }
     //文章详情
     public function articleInfo(){
         $article_id = input("post.id");
@@ -32,11 +54,13 @@ class Article extends Base
         }
         $data = Db::name("article")
             ->where(["id" =>$article_id,"is_del" =>0,"status" =>1])
-            ->field("id,type,note")
+            ->field("id,type,note,like_count,favorite_count,comment_count,send_count")
             ->find();
         if(empty($data)){
             exit(ajaxReturn([],0,'获取失败'));
         }
+        $user_id = $this ->user["id"];
+        $this ->renderRecord($user_id,$data);
         //+1查看次数
         Db::name("article") ->where(["id" =>$article_id])
             ->setInc("read_count");

@@ -7,9 +7,9 @@ use app\api\service\Safety;
 
 class Login extends Controller
 {
-	protected $appid = "wx95c52c44dc425b05";
+	protected $appid = "wxd69c6276bcc3cd9e";
 
-	protected $secret = "40a94fb99fd153d5c7c58ca7709fc10d";
+	protected $secret = "015f3edc6c09bc91132eef8308870951";
 
 	protected $grant_type = "authorization_code";
 

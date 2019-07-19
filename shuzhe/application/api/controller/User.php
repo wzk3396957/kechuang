@@ -3,6 +3,7 @@ namespace app\api\controller;
 
 use think\Db;
 use app\api\validate\User as userVali;
+use app\api\service\AliSms;
 
 class User extends Base
 {
@@ -187,5 +188,9 @@ class User extends Base
         }else{
             exit(ajaxReturn([],0,"未注册"));
         }
+    }
+    
+    public function sendSms($mobile="18011834048"){
+        dump(AliSms::sendSms($mobile));
     }
 }
