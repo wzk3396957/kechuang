@@ -1,0 +1,27 @@
+<div class="left-nav">
+    <div id="side-nav">
+        <ul id="nav">
+            {volist name="Think.session.menu" id="vo"}
+            <li>
+                <a href="javascript:;">
+                    <i class="iconfont">&#xe6b8;</i>
+                    <cite>{$vo['auth_name']}</cite>
+                    <i class="iconfont nav_right">&#xe697;</i>
+                </a>
+                <ul class="sub-menu">
+                    {volist name="vo['sub']" id="vv"}
+                    <li>
+                        <a _href="{:url($vv.rules,$vv.params)}">
+                            <i class="iconfont">&#xe6a7;</i>
+                            <cite>{$vv['auth_name']}</cite>
+
+                        </a>
+                    </li >
+                    {/volist}
+                </ul>
+            </li>
+            {/volist}
+        </ul>
+    </div>
+
+</div>
