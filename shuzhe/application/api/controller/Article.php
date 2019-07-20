@@ -12,11 +12,19 @@ class Article extends Base
         }else{
             $order = "id desc";
         }
+        //关键字搜索
+        $title = input("post.title");
+        if(empty($title)){
+            $where = [];
+        }else{
+            $where[] = ["title","like","%".$title."%"];
+        }
         $list = Db::name("article")
             ->where(["is_del" =>0,"status" =>1])
             ->order($order)
+            ->where($where)
             ->field("id,img,title,type,like_count,favorite_count,comment_count,send_count")
-            ->paginate(config("app.page_num"))
+            ->paginate(config("app.page_num"),false,['query'=>request()->param()])
             ->toArray();
         $user_id = $this ->user["id"];
         foreach ($list["data"] as &$v){
@@ -132,5 +140,15 @@ class Article extends Base
                 ->setInc("favorite_count");
             exit(ajaxReturn([],1,'收藏成功'));
         }
+    }
+
+    public function sendArti(){
+        $article_id = input("post.id");
+        if(!is_numeric($article_id)){
+            exit(ajaxReturn([],0,'参数有误'));
+        }
+        Db::name("article") ->where(["id" =>$article_id])
+            ->setInc("send_count");
+        exit(ajaxReturn([],1,'转发成功'));
     }
 }

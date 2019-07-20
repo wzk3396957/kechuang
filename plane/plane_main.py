@@ -86,46 +86,55 @@ class PlaneMain(object):
 
                 # 将敌机精灵添加到敌机精灵组
                 self.enemy_group.add(enemy)
+                # 飞机开火
             elif event.type == HERO_FIRE_EVENT:
                 self.hero.fire()
-
-
             elif event.type == pygame.KEYDOWN and event.key == pygame.K_RIGHT:
                 self.hero.image = pygame.image.load("./img/hero_right2.png")
 
             elif event.type == pygame.KEYDOWN and event.key == pygame.K_LEFT:
                 self.hero.image = pygame.image.load("./img/hero_left2.png")
 
-        # 使用键盘提供的方法获取键盘按键 - 按键元组
-        keys_pressed = pygame.key.get_pressed()
-        # 判断元组中对应的按键索引值 1
-        if keys_pressed[pygame.K_RIGHT]:
-            self.hero.image = pygame.image.load("./img/hero_right1.png")
-            self.hero.speed = HERO_SPEED
-            self.nitrogen.speed = HERO_SPEED
-        elif keys_pressed[pygame.K_LEFT]:
-            self.hero.image = pygame.image.load("./img/hero_left1.png")
-            self.hero.speed = -HERO_SPEED
-            self.nitrogen.speed = -HERO_SPEED
+        if self.hero.explode_index == 0:
+
+
+
+            # 使用键盘提供的方法获取键盘按键 - 按键元组
+            keys_pressed = pygame.key.get_pressed()
+            # 判断元组中对应的按键索引值 1
+            if keys_pressed[pygame.K_RIGHT]:
+                self.hero.image = pygame.image.load("./img/hero_right1.png")
+                self.hero.speed = HERO_SPEED
+                self.nitrogen.speed = HERO_SPEED
+            elif keys_pressed[pygame.K_LEFT]:
+                self.hero.image = pygame.image.load("./img/hero_left1.png")
+                self.hero.speed = -HERO_SPEED
+                self.nitrogen.speed = -HERO_SPEED
+            else:
+                self.hero.image = pygame.image.load("./img/hero1.png")
+                self.hero.speed = 0
+                self.nitrogen.speed = 0
+            # 判断元组中对应的按键索引值 1
+            if keys_pressed[pygame.K_DOWN]:
+                self.hero.speed2 = HERO_SPEED
+                self.nitrogen.speed2 = HERO_SPEED
+            elif keys_pressed[pygame.K_UP]:
+                self.hero.speed2 = -HERO_SPEED
+                self.nitrogen.speed2 = -HERO_SPEED
+            else:
+                self.hero.speed2 = 0
+                self.nitrogen.speed2 = 0
+            # 刷新氮气
+            self.nitrogen.rect.centerx = self.hero.rect.centerx
+            self.nitrogen.rect.top = self.hero.rect.bottom - 10
+            if self.time % 5 == 0:
+                self.nitrogen.image = pygame.image.load("./img/nitrogen1.png")
+            else:
+                self.nitrogen.image = pygame.image.load("./img/nitrogen2.png")
+
+
         else:
-            self.hero.image = pygame.image.load("./img/hero1.png")
-            self.hero.speed = 0
-            self.nitrogen.speed = 0
-        # 判断元组中对应的按键索引值 1
-        if keys_pressed[pygame.K_DOWN]:
-            self.hero.speed2 = HERO_SPEED
-            self.nitrogen.speed2 = HERO_SPEED
-        elif keys_pressed[pygame.K_UP]:
-            self.hero.speed2 = -HERO_SPEED
-            self.nitrogen.speed2 = -HERO_SPEED
-        else:
-            self.hero.speed2 = 0
-            self.nitrogen.speed2 = 0
-        # 刷新氮气
-        if self.time % 3 == 1:
-            self.nitrogen.image = pygame.image.load("./img/nitrogen1.png")
-        else:
-            self.nitrogen.image = pygame.image.load("./img/nitrogen2.png")
+            self.nitrogen.kill()
 
     def __check_collide(self):
 
@@ -155,10 +164,12 @@ class PlaneMain(object):
         if len(enemies) > 0:
 
             # 让英雄牺牲
-            self.hero.kill()
+            #self.hero.kill()
 
             # 结束游戏
-            PlaneMain.__game_over()
+            #PlaneMain.__game_over()
+
+            self.hero.explode_index = 1
 
     @staticmethod
     def __game_over():

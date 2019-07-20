@@ -112,23 +112,41 @@ class Hero(GameSprite):
         self.bullets = pygame.sprite.Group()
         # 4. Y轴速度
         self.speed2 = 0
+        # 5. 是否死亡
+        self.explode_index = 0
+
 
     def update(self):
 
-        # 英雄在水平方向移动
-        self.rect.x += self.speed
-        self.rect.y += self.speed2
+        if self.explode_index == 0:
+            # 英雄在水平方向移动
+            self.rect.x += self.speed
+            self.rect.y += self.speed2
 
-        # 控制英雄不能离开屏幕(x轴)
-        if self.rect.x < 0:
-            self.rect.x = 0
-        elif self.rect.right > SCREEN_RECT.right:
-            self.rect.right = SCREEN_RECT.right
-        # 控制英雄不能离开屏幕(y轴)
-        if self.rect.y < 0:
-            self.rect.y = 0
-        elif self.rect.bottom > SCREEN_RECT.bottom:
-            self.rect.bottom = SCREEN_RECT.bottom
+            # 控制英雄不能离开屏幕(x轴)
+            if self.rect.x < 0:
+                self.rect.x = 0
+            elif self.rect.right > SCREEN_RECT.right:
+                self.rect.right = SCREEN_RECT.right
+            # 控制英雄不能离开屏幕(y轴)
+            if self.rect.y < 0:
+                self.rect.y = 0
+            elif self.rect.bottom > SCREEN_RECT.bottom:
+                self.rect.bottom = SCREEN_RECT.bottom
+
+        elif self.explode_index == 11:
+            self.kill()
+            pygame.quit()
+            exit()
+
+        elif self.explode_index < 11:
+            new_rect = self.rect
+            super().__init__("./img/boom%d.png" % self.explode_index)
+            # print(self.explode_index)
+            self.explode_index += 1
+            self.rect = new_rect
+
+
 
     def fire(self):
         # print("发射子弹...")
@@ -174,25 +192,5 @@ class Nitrogen(GameSprite):
     def __init__(self,img):
 
         # 1. 调用父类方法，设置image&speed
-        super().__init__(img)
+        super().__init__(img,0)
 
-        # 2. 设置氮气的初始位置
-        self.rect.centerx = SCREEN_RECT.centerx
-        self.rect.bottom = SCREEN_RECT.bottom - 80
-
-    def update(self):
-
-        # 英雄在水平方向移动
-        self.rect.x += self.speed
-        self.rect.y += self.speed2
-
-        # 控制英雄不能离开屏幕(x轴)
-        if self.rect.x < 0:
-            self.rect.x = 0
-        elif self.rect.right > SCREEN_RECT.right:
-            self.rect.right = SCREEN_RECT.right
-        # 控制英雄不能离开屏幕(y轴)
-        if self.rect.y < 0:
-            self.rect.y = 0
-        elif self.rect.top > SCREEN_RECT.bottom:
-            self.rect.top = SCREEN_RECT.bottom

@@ -11,7 +11,8 @@ class Video extends Base
         'thumb_img' => 'require',
         'video' => 'require',
         'type_id' => 'require|number',
-        'doctor_id' => 'require'
+        'doctor_id' => 'require',
+        'note' => 'require'
     ];
 
     protected $field = [
@@ -20,7 +21,8 @@ class Video extends Base
         'thumb_img' => '缩略图',
         'video' => '视频文件',
         'type_id' => '类型',
-        'doctor_id' => '医生'
+        'doctor_id' => '医生',
+        'note' => '简介'
     ];
 
 

@@ -150,6 +150,15 @@
             </div>
         </div>
 
+        <div class="layui-form-item layui-form-text">
+            <label for="note" class="layui-form-label">
+                简介
+            </label>
+            <div class="layui-input-block">
+                <textarea placeholder="请输入内容" id="note" name="note" class="layui-textarea">{$data.note}</textarea>
+            </div>
+        </div>
+
         <div class="layui-form-item">
             <input type="hidden" name="id" value="{$data.id}">
             <button class="layui-btn" type="button" lay-submit="" lay-filter="add">增加</button>

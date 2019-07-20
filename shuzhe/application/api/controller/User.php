@@ -156,7 +156,7 @@ class User extends Base
 
             }
             //合并
-            $v["avatar"] = config("app.url") . $v["avatar"];
+            $v["content"] = emoji_decode($v["content"]);
             $v["create_at"] = date("Y-m-d h:i:s",$v["create_at"]);
             $v = array_merge($v, $res);
         }

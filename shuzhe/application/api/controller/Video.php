@@ -11,10 +11,18 @@ class Video extends Base
         if(!is_numeric($type_id)){
             exit(ajaxReturn([],0,'参数有误'));
         }
+        //关键字搜索
+        $title = input("post.title");
+        if(empty($title)){
+            $where = [];
+        }else{
+            $where[] = ["title","like","%".$title."%"];
+        }
         $list = Db::name("video")
             ->where(["type_id"=>$type_id,"status"=>1])
+            ->where($where)
             ->field("id,title,play_count,main_img,doctor_id")
-            ->paginate(config("app.page_num"))
+            ->paginate(config("app.page_num"),false,['query'=>request()->param()])
             ->toArray();
         foreach($list["data"] as &$v){
             $v["main_img"] = config("app.url") . $v["main_img"];
@@ -30,7 +38,7 @@ class Video extends Base
         }
         //视频
         $video = Db::name("video") ->where(["id"=>$video_id])
-            ->field("id,title,video,doctor_id,comment_count,favorite_count,like_count,send_count")
+            ->field("id,title,video,doctor_id,comment_count,favorite_count,like_count,send_count,note")
             ->find();
         if(empty($video)){
             exit(ajaxReturn([],0,'视频获取失败'));
@@ -182,5 +190,16 @@ class Video extends Base
         }else{
             $v["is_favorites"] = 1;
         }
+    }
+
+    //转发视频
+    public function sendVideo(){
+        $video_id = input("post.id");
+        if(!is_numeric($video_id)){
+            exit(ajaxReturn([],0,'参数有误'));
+        }
+        Db::name("video") ->where(["id" =>$video_id])
+            ->setInc("send_count");
+        exit(ajaxReturn([],1,'转发成功'));
     }
 }
