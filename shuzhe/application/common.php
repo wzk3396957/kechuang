@@ -81,3 +81,30 @@ function getRandChar($length)
 
     return $str;
 }
+
+/**
+ * 加密
+ */
+function emoji_encode($str){
+    $str_encode = '';
+    $length = mb_strlen($str,'utf-8');
+    for($i=0;$i<$length;$i++){
+        $_tmp_str = mb_substr($str,$i,1,'utf-8');
+        if(strlen($_tmp_str) >= 4){
+            $str_encode .= '[EMOJI:' . rawurlencode($_tmp_str) . ']]';
+        }else{
+            $str_encode .= $_tmp_str;
+        }
+    }
+    return $str_encode;
+}
+
+/**
+ * 解密
+ */
+function emoji_decode($str){
+    $str_decode = preg_replace_callback('|\[EMOJI:(.*?)\]\]|', function($matches){
+        return rawurldecode($matches[1]);
+    },$str);
+    return $str_decode;
+}

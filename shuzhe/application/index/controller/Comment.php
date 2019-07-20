@@ -53,6 +53,7 @@ class Comment extends Base
             ->order("t1.id desc")
             ->field("t1.*,t2.nickname,t2.avatar")
             ->paginate(config("app.page_num"),false,['query'=>request()->param()]);
+//        halt($list);
         $this ->assign("list",$list);
 
         return $this ->fetch();

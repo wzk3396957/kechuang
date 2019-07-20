@@ -61,7 +61,7 @@
         <tr>
             <td>{$vo.id}</td>
             <td><img src="{$vo.avatar}"/>{$vo.nickname}</td>
-            <td>{$vo.content}</td>
+            <td>{$vo.content|emoji_decode}</td>
             <td>{$vo.create_at|date="Y-m-d h:i:s"}</td>
 
             <td class="td-manage">

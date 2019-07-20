@@ -15,6 +15,8 @@ class PlaneMain(object):
         # 4. 设置定时器事件 - 创建敌机　1s
         pygame.time.set_timer(CREATE_ENEMY_EVENT, 1000)
         pygame.time.set_timer(HERO_FIRE_EVENT, 500)
+        # 5. 创建次数属性
+        self.time = 0
 
     def startGame(self):
 
@@ -29,6 +31,8 @@ class PlaneMain(object):
             self.__update_sprites()
             # 5. 更新显示
             pygame.display.update()
+            # 6. 执行的次数
+            self.time += 1
 
     def __create_sprites(self):
         # 创建背景精灵和精灵组
@@ -117,7 +121,11 @@ class PlaneMain(object):
         else:
             self.hero.speed2 = 0
             self.nitrogen.speed2 = 0
-
+        # 刷新氮气
+        if self.time % 3 == 1:
+            self.nitrogen.image = pygame.image.load("./img/nitrogen1.png")
+        else:
+            self.nitrogen.image = pygame.image.load("./img/nitrogen2.png")
 
     def __check_collide(self):
 

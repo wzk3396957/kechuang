@@ -169,14 +169,30 @@ class Bullet(GameSprite):
         pass
 
 
-class Nitrogen(Hero):
+class Nitrogen(GameSprite):
     """氮气精灵"""
     def __init__(self,img):
 
         # 1. 调用父类方法，设置image&speed
         super().__init__(img)
 
-        # 2. 设置英雄的初始位置
+        # 2. 设置氮气的初始位置
         self.rect.centerx = SCREEN_RECT.centerx
         self.rect.bottom = SCREEN_RECT.bottom - 80
 
+    def update(self):
+
+        # 英雄在水平方向移动
+        self.rect.x += self.speed
+        self.rect.y += self.speed2
+
+        # 控制英雄不能离开屏幕(x轴)
+        if self.rect.x < 0:
+            self.rect.x = 0
+        elif self.rect.right > SCREEN_RECT.right:
+            self.rect.right = SCREEN_RECT.right
+        # 控制英雄不能离开屏幕(y轴)
+        if self.rect.y < 0:
+            self.rect.y = 0
+        elif self.rect.top > SCREEN_RECT.bottom:
+            self.rect.top = SCREEN_RECT.bottom

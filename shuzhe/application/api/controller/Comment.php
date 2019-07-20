@@ -12,6 +12,7 @@ class Comment extends Base
         if(!is_numeric($video_id) || empty($content)){
             exit(ajaxReturn([],0,'参数有误'));
         }
+        $content = emoji_encode($content);
         $user_id = $this ->user["id"];
         $data = [
             "user_id" =>$user_id,
@@ -40,7 +41,8 @@ class Comment extends Base
             ->toArray();
         foreach($list["data"] as &$v){
             $v["create_at"] = date("Y-m-d h:i:s",$v["create_at"]);
-            $v["avatar"] = config("app.url") . $v["avatar"];
+//            $v["avatar"] = config("app.url") . $v["avatar"];
+            $v["content"] = emoji_decode($v["content"]);
         }
         exit(ajaxReturn($list,1,"获取数据成功"));
     }
@@ -52,6 +54,7 @@ class Comment extends Base
         if(!is_numeric($article_id) || empty($content)){
             exit(ajaxReturn([],0,'参数有误'));
         }
+        $content = emoji_encode($content);
         $user_id = $this ->user["id"];
         $data = [
             "user_id" =>$user_id,
@@ -80,7 +83,8 @@ class Comment extends Base
             ->toArray();
         foreach($list["data"] as &$v){
             $v["create_at"] = date("Y-m-d h:i:s",$v["create_at"]);
-            $v["avatar"] = config("app.url") . $v["avatar"];
+            $v["content"] = emoji_decode($v["content"]);
+//            $v["avatar"] = config("app.url") . $v["avatar"];
         }
         exit(ajaxReturn($list,1,"获取数据成功"));
     }

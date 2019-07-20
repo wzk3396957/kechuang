@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="48fca9c3-aae8-41fb-a842-0d25766e93de" name="Default Changelist" comment="" />
+    <list default="true" id="48fca9c3-aae8-41fb-a842-0d25766e93de" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/game_sprite.py" beforeDir="false" afterPath="$PROJECT_DIR$/game_sprite.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plane_main.py" beforeDir="false" afterPath="$PROJECT_DIR$/plane_main.py" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -9,7 +13,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="CoverageDataManager">
-    <SUITE FILE_PATH="coverage/plane$plane_main.coverage" NAME="plane_main Coverage Results" MODIFIED="1563525578902" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/plane$plane_main.coverage" NAME="plane_main Coverage Results" MODIFIED="1563588514517" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
   <component name="DatabaseView">
     <option name="SHOW_INTERMEDIATE" value="true" />
@@ -30,13 +34,23 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/game_sprite.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="485">
-              <caret line="180" column="50" selection-start-line="180" selection-start-column="50" selection-end-line="180" selection-end-column="50" />
+            <state relative-caret-position="506">
+              <caret line="197" column="25" selection-start-line="197" selection-start-column="25" selection-end-line="197" selection-end-column="25" />
               <folding>
                 <element signature="e#0#13#0" expanded="true" />
                 <element signature="e#1670#2113#0" />
-                <element signature="e#3374#3672#0" />
-                <element signature="e#3953#4290#0" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$USER_HOME$/Desktop/game_sprite - 副本.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="407">
+              <caret line="109" column="65" lean-forward="true" selection-start-line="106" selection-start-column="8" selection-end-line="109" selection-end-column="65" />
+              <folding>
+                <element signature="e#0#13#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -45,8 +59,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/plane_main.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="236">
-              <caret line="108" column="35" selection-start-line="108" selection-start-column="35" selection-end-line="108" selection-end-column="35" />
+            <state relative-caret-position="496">
+              <caret line="124" column="24" selection-start-line="124" selection-start-column="24" selection-end-line="124" selection-end-column="24" />
               <folding>
                 <element signature="e#0#13#0" expanded="true" />
               </folding>
@@ -69,6 +83,9 @@
       <find>time</find>
     </findStrings>
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
@@ -80,17 +97,19 @@
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds">
+  <component name="ProjectFrameBounds" extendedState="1">
     <option name="x" value="338" />
     <option name="y" value="97" />
     <option name="width" value="1377" />
     <option name="height" value="886" />
   </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -102,7 +121,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -166,11 +184,12 @@
       <workItem from="1562894890326" duration="6001000" />
       <workItem from="1562985931304" duration="8706000" />
       <workItem from="1563519826881" duration="5930000" />
+      <workItem from="1563587918883" duration="839000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="30602000" />
+    <option name="totallyTimeSpent" value="31441000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -183,13 +202,14 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="338" y="97" width="1377" height="886" extended-state="0" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2604404" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2642369" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.18700266" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.18592298" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39905363" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -216,8 +236,18 @@
     <entry file="file://$PROJECT_DIR$/config.py" />
     <entry file="file://$PROJECT_DIR$/plane_main.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="236">
-          <caret line="108" column="35" selection-start-line="108" selection-start-column="35" selection-end-line="108" selection-end-column="35" />
+        <state relative-caret-position="496">
+          <caret line="124" column="24" selection-start-line="124" selection-start-column="24" selection-end-line="124" selection-end-column="24" />
+          <folding>
+            <element signature="e#0#13#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Desktop/game_sprite - 副本.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="407">
+          <caret line="109" column="65" lean-forward="true" selection-start-line="106" selection-start-column="8" selection-end-line="109" selection-end-column="65" />
           <folding>
             <element signature="e#0#13#0" expanded="true" />
           </folding>
@@ -226,13 +256,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/game_sprite.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="485">
-          <caret line="180" column="50" selection-start-line="180" selection-start-column="50" selection-end-line="180" selection-end-column="50" />
+        <state relative-caret-position="506">
+          <caret line="197" column="25" selection-start-line="197" selection-start-column="25" selection-end-line="197" selection-end-column="25" />
           <folding>
             <element signature="e#0#13#0" expanded="true" />
             <element signature="e#1670#2113#0" />
-            <element signature="e#3374#3672#0" />
-            <element signature="e#3953#4290#0" />
           </folding>
         </state>
       </provider>
