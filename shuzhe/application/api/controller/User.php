@@ -22,6 +22,17 @@ class User extends Base
         if($is_exist){
             exit(ajaxReturn([],0,'您已注册'));
         }
+        //验证是否存在手机
+        $is_exist = Db::name("user")
+            ->where(["phone"=>$data["phone"]])
+            ->find();
+        if($is_exist){
+            exit(ajaxReturn([],0,'手机号已存在'));
+        }
+        //手机验证码
+        if(cache($data["phone"]) != $data["code"]){
+            exit(ajaxReturn([],0,"验证码错误"));
+        }
         //插入数据库
         unset($data["code"]);
         $res = Db::name("user")
@@ -190,7 +201,24 @@ class User extends Base
         }
     }
     
-    public function sendSms($mobile="18011834048"){
-        dump(AliSms::sendSms($mobile));
+    public function sendSms(){
+        $mobile = input("post.mobile");
+        if(empty($mobile)){
+            exit(ajaxReturn([],0,"参数有误"));
+        }
+        $rule = '^1(3|4|5|7|8)[0-9]\d{8}$^';
+        $result = preg_match($rule, $mobile);
+        if (!$result) {
+            exit(ajaxReturn([],0,"请输入正确的手机号"));
+        }
+        $code = rand(1111,9999);
+        $res = AliSms::sendSms($mobile,$code);
+
+        if($res->Code == "OK"){
+            cache($mobile,$code, 60*15);
+            exit(ajaxReturn([],1,"发送成功"));
+        }else{
+            exit(ajaxReturn([],0,"发送失败"));
+        }
     }
 }
